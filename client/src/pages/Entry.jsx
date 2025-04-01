@@ -1,11 +1,9 @@
 import {motion, AnimatePresence} from "framer-motion"
-import {ailogo} from "../assets"
 import { headContentAnimation, headTextAnimation, slideAnimation } from "../config/motion"
 import { useSnapshot } from "valtio";
-import React,{useState , useEffect, Suspense} from "react";
+import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import Canvass from "../components/Canvass";
 
 import state from "../store";
 
@@ -18,6 +16,7 @@ export default function Entry(){
 
     const handleLogin = async (e) => {
       e.preventDefault();
+      state.intro=false;
     
       const email = e.target.email.value;
       const password = e.target.password.value;
@@ -39,6 +38,7 @@ export default function Entry(){
     
     const handleRegister = async (e) => {
       e.preventDefault();
+      state.intro=false;
     
       const name = e.target.name.value;
       const email = e.target.email.value;
@@ -69,10 +69,10 @@ export default function Entry(){
 
     return (
         <AnimatePresence>
-          {snap.intro && (
+          {state.intro && (
             <motion.section className="home" {...headContentAnimation}>
               <motion.div className="flex-center" {...headTextAnimation}>
-                  <img src={ailogo} alt="logo" className="w-40 h-40" /> 
+                  {/* <img src={logo} alt="logo" className="w-40 h-40" />  */}
                   <h1 className="title">PA</h1>
               </motion.div>
             
@@ -112,10 +112,11 @@ export default function Entry(){
                     <input type="email" id="email" placeholder="john@gmail.com" className="input" required/>
                     <label htmlFor="password">Password</label>
                     <input type="password" id="password" placeholder="password use symbols and number" className="input" required/>
-                    <button type="submit" className="button">Submit</button>
+                    <button type="submit" className="button" >Submit</button>
                   </form>
                 </motion.div>
               )}
+              
               </motion.section>
           )}
           

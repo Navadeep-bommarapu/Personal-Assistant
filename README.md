@@ -8,3 +8,6 @@
 
 # Client Folder
 ## Frontend folder, same design with tailwindcss and three.js
+
+# Model
+## I tried my best to create a 3d model seeing the blender donut tutorial..
